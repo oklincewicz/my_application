@@ -10,14 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TrelloBoardDto {
+public class TrelloAttachmentsByTypDto {
 
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("trello")
+    private List<TrelloTypDto> trelloTyp;
 
-    @JsonProperty("id")
-    private String id;
-
-    @JsonProperty("lists")
-    private List<TrelloListDto> lists;
 }
