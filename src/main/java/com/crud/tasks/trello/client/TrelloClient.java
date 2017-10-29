@@ -51,16 +51,6 @@ public class TrelloClient {
 
     }
 
-//    public List<TrelloBoardDto> getTrelloBoards() {
-//
-//        Optional<TrelloBoardDto[]> boardsResponse = restTemplate.getForObject(buildBoardUrl(), TrelloBoardDto[].class);
-//
-//        if (boardsResponse.isPresent()) {
-//            return Arrays.asList(boardsResponse.get());
-//        }
-//        return new ArrayList<>();
-//    }
-
     public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto) {
 
         URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/cards")
