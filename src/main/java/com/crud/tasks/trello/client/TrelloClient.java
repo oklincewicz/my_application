@@ -43,13 +43,8 @@ public class TrelloClient {
     public List<TrelloBoardDto> getTrelloBoards() {
 
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject( buildBoardUrl(), TrelloBoardDto[].class);
-
-        if (boardsResponse != null) {
-            return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
+        return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
         }
-        return new ArrayList<>();
-
-    }
 
     public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto) {
 
