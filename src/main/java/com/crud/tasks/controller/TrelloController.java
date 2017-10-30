@@ -20,22 +20,23 @@ public class TrelloController {
     private TrelloClient trelloClient;
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-    public void getTrelloBoards() {
-
-        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-
-        trelloBoards.stream()
-                .filter(x -> (x.getId().isEmpty() == false && x.getName().contains("Kodilla")))
-                .forEach(x -> {
-
-                    System.out.println(x.getName() + " - " + x.getId());
-
-                    System.out.println("This board contains lists: ");
-
-                    x.getLists().forEach(y -> System.out.println(y.getName() + " - " + y.getId() + " - " + y.isClosed()));
-
-                });
+    public List<TrelloBoardDto> getTrelloBoards() {
+        return trelloClient.getTrelloBoards();
     }
+//        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
+//
+//        trelloBoards.stream()
+//                .filter(x -> (x.getId().isEmpty() == false && x.getName().contains("Kodilla")))
+//                .forEach(x -> {
+//
+//                    System.out.println(x.getName() + " - " + x.getId());
+//
+//                    System.out.println("This board contains lists: ");
+//
+//                    x.getLists().forEach(y -> System.out.println(y.getName() + " - " + y.getId() + " - " + y.isClosed()));
+//
+//                });
+//    }
 
         @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
         public CreatedTrelloCard createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
