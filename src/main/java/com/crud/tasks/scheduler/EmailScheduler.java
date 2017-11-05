@@ -23,10 +23,10 @@ import org.springframework.stereotype.Component;
         private AdminConfig adminConfig;
 
         @Scheduled(cron = "0 0 10 * * *")
-//        @Scheduled(fixedDelay = 10000)
+//        @Scheduled(fixedDelay = 1)
         public void sendInformationEmail() {
             long size = taskRepository.count();
-            if (size <= 1) {
+            if (size == 1) {
                 simpleEmailService.send(new Mail(
                         adminConfig.getAdminMail(),
                         SUBJECT,

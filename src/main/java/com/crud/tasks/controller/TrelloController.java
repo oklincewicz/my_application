@@ -21,6 +21,7 @@ public class TrelloController {
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
         return trelloService.fetchTrelloBoards();
+        //toDo (filtrowanie po fladze closed)
     }
 //        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
 //
