@@ -3,12 +3,15 @@ package com.crud.tasks.controller;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.TrelloListDto;
 import com.crud.tasks.service.TrelloService;
 import com.crud.tasks.trello.client.TrelloClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin("*")
 @RestController
@@ -22,21 +25,19 @@ public class TrelloController {
     public List<TrelloBoardDto> getTrelloBoards() {
         return trelloService.fetchTrelloBoards();
         //toDo (filtrowanie po fladze closed)
-    }
-//        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-//
+//        List<TrelloBoardDto> trelloBoards = trelloService.fetchTrelloBoards();
 //        trelloBoards.stream()
-//                .filter(x -> (x.getId().isEmpty() == false && x.getName().contains("Kodilla")))
-//                .forEach(x -> {
+//                .map(TrelloBoardDto::getLists)
+//                .filter(x -> x.stream()
+//                .filter(y -> y.isClosed()))
+//                .collect(Collectors.toList());
 //
-//                    System.out.println(x.getName() + " - " + x.getId());
-//
-//                    System.out.println("This board contains lists: ");
-//
-//                    x.getLists().forEach(y -> System.out.println(y.getName() + " - " + y.getId() + " - " + y.isClosed()));
-//
-//                });
-//    }
+//        List<TrelloBoardDto> openList = trelloBoards.stream()
+//                .map(TrelloListDto::isClosed)
+//                .filter(Boolean::toString)
+//                .forEach(System.out::println);
+//        return openList;
+    }
 
         @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
         public CreatedTrelloCard createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
