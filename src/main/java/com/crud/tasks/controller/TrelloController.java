@@ -25,7 +25,7 @@ public class TrelloController {
     public List<TrelloBoardDto> getTrelloBoards() {
         List<TrelloBoardDto> trelloBoards = trelloService.fetchTrelloBoards();
         return trelloBoards.stream()
-                .filter(x -> x.getLists().stream().anyMatch(y -> y.isClosed() == false))
+                .filter(x -> x.getLists().stream().anyMatch(y -> !y.isClosed()))
                 .collect(Collectors.toList());
     }
         @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
