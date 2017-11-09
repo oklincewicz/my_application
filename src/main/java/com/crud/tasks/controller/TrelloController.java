@@ -23,22 +23,12 @@ public class TrelloController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
-        return trelloService.fetchTrelloBoards();
-        //toDo (filtrowanie po fladze closed)
-//        List<TrelloBoardDto> trelloBoards = trelloService.fetchTrelloBoards();
-//        trelloBoards.stream()
-//                .map(TrelloBoardDto::getLists)
-//                .filter(x -> x.stream()
-//                .filter(y -> y.isClosed()))
-//                .collect(Collectors.toList());
-//
-//        List<TrelloBoardDto> openList = trelloBoards.stream()
-//                .map(TrelloListDto::isClosed)
-//                .filter(Boolean::toString)
-//                .forEach(System.out::println);
-//        return openList;
+        List<TrelloBoardDto> trelloBoards = trelloService.fetchTrelloBoards();
+        trelloBoards.stream()
+                .filter(x -> x.getLists().stream().anyMatch(y -> !y.isClosed()))
+                .collect(Collectors.toList());
+        return trelloBoards;
     }
-
         @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
         public CreatedTrelloCard createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloService.createdTrelloCard(trelloCardDto);
