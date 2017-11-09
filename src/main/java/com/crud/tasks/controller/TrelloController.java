@@ -25,7 +25,7 @@ public class TrelloController {
     public List<TrelloBoardDto> getTrelloBoards() {
         List<TrelloBoardDto> trelloBoards = trelloService.fetchTrelloBoards();
         trelloBoards.stream()
-                .filter(x -> x.getLists().stream().anyMatch(y -> !y.isClosed()))
+                .filter(x -> x.getLists().stream().anyMatch(y -> !y.isClosed() == false))
                 .collect(Collectors.toList());
         return trelloBoards;
     }
