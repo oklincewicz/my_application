@@ -28,8 +28,8 @@ public class TrelloController {
                 .filter(x -> x.getLists().stream().anyMatch(y -> !y.isClosed()))
                 .collect(Collectors.toList());
     }
-        @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
-        public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+    @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
+    public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloFacade.createCard(trelloCardDto);
     }
 }
