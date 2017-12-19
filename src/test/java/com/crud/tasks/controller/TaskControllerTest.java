@@ -78,7 +78,7 @@ public class TaskControllerTest {
         //Given
         TaskDto taskDto = new TaskDto(3L, "Tasks List Test", "Test");
         Task task = new Task(3L, "Tasks List Test", "Test");
-//        when(dbService.getTaskById(anyLong())).thenReturn(ofNullable(task)); //????
+        when(dbService.getTaskById(anyLong())).thenReturn(ofNullable(task)); //????
         when(taskMapper.mapToTaskDto(any())).thenReturn(taskDto);
 
         //When & Then
@@ -96,7 +96,7 @@ public class TaskControllerTest {
         //Given
         TaskDto taskDto = new TaskDto(3L, "Tasks List Test", "Test");
         Task task = new Task(3L, "Tasks List Test", "Test");
-        doNothing().when(dbService).deleteTaskById(task.getId()); //????
+        doNothing().when(dbService).deleteTaskById(task.getId()); //opcjonalny :)
         when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
 
         //When & Then
