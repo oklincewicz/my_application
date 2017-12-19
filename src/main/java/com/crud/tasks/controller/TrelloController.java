@@ -23,10 +23,7 @@ public class TrelloController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
-        List<TrelloBoardDto> trelloBoards = trelloFacade.fetchTrelloBoards();
-        return trelloBoards.stream()
-                .filter(x -> x.getLists().stream().anyMatch(y -> !y.isClosed()))
-                .collect(Collectors.toList());
+        return trelloFacade.fetchTrelloBoards();
     }
     @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
     public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
