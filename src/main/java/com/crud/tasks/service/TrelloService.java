@@ -34,7 +34,7 @@ public class TrelloService {
     public CreatedTrelloCardDto createdTrelloCard (final TrelloCardDto trelloCardDto) {
         CreatedTrelloCardDto newCard = trelloClient.createNewCard(trelloCardDto);
         ofNullable(newCard).ifPresent(x -> emailService.send(new Mail(adminConfig.getAdminMail(), SUBJECT,
-                "New card: " + trelloCardDto.getName() + "has been created on Your Trello account", "")));
+                "New card: " + x.getName() + "has been created on Your Trello account", "")));
         return newCard;
     }
 }

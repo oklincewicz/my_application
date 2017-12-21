@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MailCreatorService {
+public class HowManyTasksMailCreate {
     @Autowired
     private AdminConfig adminConfig;
     @Autowired
@@ -21,11 +21,11 @@ public class MailCreatorService {
     @Qualifier("templateEngine")
     private TemplateEngine templateEngine;
 
-    public String buildTrelloCardEmail(String message) {
-        List<String> functionality = new ArrayList<>();
-        functionality.add("You can menage your tasks");
-        functionality.add("Provides connection with Trello Account");
-        functionality.add("Application allows sending tasks to Trello");
+    public String createMailHowManyTasks(String message) {
+        List<String> howManyTasks = new ArrayList<>();
+        howManyTasks.add("Task to do");
+        howManyTasks.add("Task to do");
+        howManyTasks.add("Task to do");
 
         Context context = new Context();
         context.setVariable("message", message);
@@ -35,13 +35,14 @@ public class MailCreatorService {
         context.setVariable("show_button", false);
         context.setVariable("is_friend", true);
         context.setVariable("admin_config", adminConfig);
-        context.setVariable("application_functionality", functionality);
+        context.setVariable("howManyTasks", howManyTasks);
         context.setVariable("preview", "Info about create new card");
         context.setVariable("goodbye", "See you later :)");
         context.setVariable("companyName", companyConfig.getCompanyName());
         context.setVariable("companyMail", "mail: " + companyConfig.getCompanyMail());
         context.setVariable("companyPhone", "tel: " + companyConfig.getCompanyPhone());
         context.setVariable("companyMotto", "device: " + companyConfig.getCompanyMotto());
-        return templateEngine.process("mail/created-trello-card-mail", context);
+        return templateEngine.process("mail/mail-howManyTaskYouHave", context);
     }
+
 }
